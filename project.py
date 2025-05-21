@@ -5,7 +5,7 @@ from typing import List, Tuple, Optional
 
 pygame.init()
 
-#Константы
+# Константы
 SCREEN_WIDTH, SCREEN_HEIGHT = 600, 650
 BOARD_SIZE = 5
 WIN_LENGTH = 4
