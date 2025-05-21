@@ -5,7 +5,7 @@ from typing import List, Tuple, Optional
 
 pygame.init()
 
-# Константы (все названия приведены к единому виду)
+#Константы
 SCREEN_WIDTH, SCREEN_HEIGHT = 600, 650
 BOARD_SIZE = 5
 WIN_LENGTH = 4
@@ -45,11 +45,11 @@ class TicTacToe:
         self.last_move = None
         
     def reset(self):
-        """Сброс игры в начальное состояние"""
+        # Сброс игры в начальное состояние
         self.__init__() 
     
     def draw_board(self):
-        """Отрисовка игрового поля и интерфейса"""
+        # Отрисовка игрового поля и интерфейса
         screen.fill(BG_COLOR)
         self._draw_game_status()
         self._draw_grid()
@@ -58,7 +58,7 @@ class TicTacToe:
         self._highlight_last_move()
     
     def _draw_game_status(self):
-        """Отрисовка статуса игры"""
+        # Отрисовка статуса игры
         if self.game_over:
             status_text = f"Победил: {self.winner}!" if self.winner else "Ничья!"
             text_color = X_COLOR if self.winner == 'X' else O_COLOR if self.winner else TEXT_COLOR
@@ -71,7 +71,7 @@ class TicTacToe:
         screen.blit(status_surface, text_rect)
     
     def _draw_grid(self):
-        """Отрисовка игровой сетки"""
+        # Отрисовка игровой сетки
         for i in range(BOARD_SIZE + 1):
             # Горизонтальные линии
             pygame.draw.line(screen, LINE_COLOR, 
@@ -85,7 +85,7 @@ class TicTacToe:
                           LINE_WIDTH)
     
     def _draw_symbols(self):
-        """Отрисовка крестиков и ноликов"""
+        # Отрисовка крестиков и ноликов
         for row in range(BOARD_SIZE):
             for col in range(BOARD_SIZE):
                 center_x = MARGIN + col * CELL_SIZE + CELL_SIZE // 2
@@ -104,16 +104,16 @@ class TicTacToe:
                     self._draw_o(center_x, center_y)
     
     def _draw_x(self, x, y):
-        """крестик"""
+        # крестик
         pygame.draw.line(screen, X_COLOR, (x-35, y-35), (x+35, y+35), 6)
         pygame.draw.line(screen, X_COLOR, (x+35, y-35), (x-35, y+35), 6)
     
     def _draw_o(self, x, y):
-        """нолик"""
+        # нолик
         pygame.draw.circle(screen, O_COLOR, (x, y), 35, 6)
     
     def _draw_restart_button(self):
-        """кнопка рестарта"""
+        # кнопка рестарта
         mouse_pos = pygame.mouse.get_pos()
         button_rect = pygame.Rect(SCREEN_WIDTH//2 - 100, SCREEN_HEIGHT-45, 200, 40)
         
@@ -124,7 +124,7 @@ class TicTacToe:
                   (SCREEN_WIDTH//2 - 50, SCREEN_HEIGHT-38))
     
     def _highlight_last_move(self):
-        """подсветка последнего хода"""
+        # подсветка последнего хода 
         if self.last_move:
             row, col = self.last_move
             pygame.draw.rect(screen, (255, 255, 150), 
@@ -134,7 +134,7 @@ class TicTacToe:
                            border_radius=3)
     
     def make_move(self, row, col):
-        """сам ход"""
+        # сам ход 
         if (self.game_over or row < 0 or row >= BOARD_SIZE or 
             col < 0 or col >= BOARD_SIZE or self.board[row, col] != ' '):
             return False
